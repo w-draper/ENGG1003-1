@@ -10,7 +10,7 @@ The array holds the message to be decrypted.
 One Int holds the 'key' for the encryption.
 One Int holds the length of the array.
 ************************************************************/
-int rotEnc(int text, int key);
+int rotEnc(int *text, int key);
 
 
 
@@ -42,8 +42,24 @@ int main(){
 	
 }
 
-int rotEnc(int text, int key){
-	int enc;
-	enc = (text + key); //* (% 26);
-	return enc;
+int rotEnc(int *text, int key){
+	
+	int i;
+	
+	//this for loop will loop for every value of the array 'text[]'
+	for(i = 0; text[i] != 0; ++i){
+		text[i] = val;
+		if((val <= 'a') && (val >= 'z')){
+			val = val + key;
+			if(val > 'z'){
+				val = val - 'z' + 'a' - 1;
+			}
+			val = text[i];
+		}
+		
+	}
+	
+	
+	
+	
 }
