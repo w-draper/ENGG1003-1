@@ -34,11 +34,10 @@ int a2c(/*inputs*/);
 int main(){
 	printf("Initialising\n");
 	//take stdin of the text
-	//sent to function to encode in ascii
-	//send ascii to appropriate cipher funct
-	//int ascii = 65; //spells 'A' in ASCII
-	//int key = 1;
-	printf("%d\n", rotEnc(65, 1));
+	char code[20] = "hello";
+	int key = 4;
+	
+	printf("%d\n", rotEnc(code, key));
 	
 }
 
