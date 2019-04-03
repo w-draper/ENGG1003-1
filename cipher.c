@@ -10,7 +10,7 @@ The array holds the message to be decrypted.
 One Int holds the 'key' for the encryption.
 One Int holds the length of the array.
 ************************************************************/
-int rotEnc(int *text, int key);
+int rotEnc(char *text, int key);
 
 
 
@@ -34,16 +34,17 @@ int a2c(/*inputs*/);
 int main(){
 	printf("Initialising\n");
 	//take stdin of the text
-	char code[20] = "hello";
+	char code[100] = "hello";
 	int key = 4;
 	
-	printf("%d\n", rotEnc(code, key));
+	printf("%d\n", rotEnc(*code, key));
 	
 }
 
-int rotEnc(int *text, int key){
+int rotEnc(char *text, int key){
 	
 	int i;
+	int val;
 	
 	//this for loop will loop for every value of the array 'text[]'
 	for(i = 0; text[i] != 0; ++i){
@@ -56,9 +57,6 @@ int rotEnc(int *text, int key){
 			val = text[i];
 		}
 		
-	}
-	
-	
-	
+	}	
 	
 }
