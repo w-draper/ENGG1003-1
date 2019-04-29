@@ -82,8 +82,8 @@ int main(){
 				break;
 			case 2:
 				printf("You selected: (2) Rotation Cipher decryption with key\n"); 				
-				printf("please enter the Key:\n")
-				scanf("%d", &keyI)
+				printf("please enter the Key:\n");
+				scanf("%d", &keyI);
 					
 				printf("Please enter your text followed by a '~' then press enter:\n");
 				scanf("%[^~]s",text);
@@ -101,7 +101,7 @@ int main(){
 			case 4:
 				printf("You selected: (4) Substitution Cipher encryption\n"); 
 					
-				printf("please enter the Key followed by a '~' then press enter:\n");
+				printf("please enter the Key:\n");
 				scanf("%s", key);//note the key variable is changed to accomodate for a string key not int
 					
 				printf("Please enter your text followed by a '~' then press enter:\n");
@@ -114,7 +114,7 @@ int main(){
 			case 5:
 				printf("You selected: (5) Substitution Cipher decryption with key\n"); 
 					
-				printf("please enter the Key followed by a '~' then press enter:\n");
+				printf("please enter the Key:\n");
 				scanf("%s", key); //note the key variable is changed to accomodate for a string key not int
 					
 				printf("Please enter your text followed by a '~' then press enter:\n");
@@ -189,23 +189,28 @@ void subEnc(char *message, char *key){
 	int enc;
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
-	for(i = 0; message[i] != 0; ++i){
+	for(i = 1; message[i] != 0; i++){  //loops for every letter of message
 		
-		val = message[i];
+		val = message[i];   //sets the letter at that specific loop equal to val
 		
-		for(i1 = 0; alphabet[i1] != 0; ++i1){
-			alph = alphabet[i1];
-			if(val == alph)
-				enc = i1;		
+		
+		if(val != ' '){ //skips spaces in message
+		for(i1 = 0; alphabet[i1] != 0; ++i1){ //loops for every letter of the alphabet
+			alph = alphabet[i1];  //the letter of the alphabet is equal to alph
+			
+			if(val == alph)   //if the lettter in the message is equal to the letter in the alphabet 
+				enc = i1;	  //set that spot in the alphabet as enc
+			}
+		
+		keyA = key[enc];  //find that spot in the key seeing as the key is also 26 chars
+		
+		
+		val = keyA; //set the value in the message equal to the new encrypted char
+		
+		message[i] = val; //put the new letter back in the array
 		}
-
-		keyA = key[enc];
-		
-		
-		val = keyA;
-		message[i] = val;
-	}
-	printf("%s\n", message);
+		}
+	printf("%s\n", message); //print the encrypted message
 }
 
 void subDec(char *message, char *key){
@@ -216,21 +221,22 @@ void subDec(char *message, char *key){
 	int enc;
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 
-	for(i = 0; message[i] != 0; ++i){
+	for(i = 1; message[i] != 0; ++i){  //loops for every letter of message
 		
-		val = message[i];
-		
-		for(i1 = 0; key[i1] != 0; ++i1){
-			keyA = key[i1];
-			if(val == keyA)
-				enc = i1;		
+		val = message[i]; //sets the letter at that specific loop equal to val
+		if(val != ' '){ //skips spaces in message
+		for(i1 = 0; key[i1] != 0; ++i1){ //loops for every letter of the key
+			keyA = key[i1];		//the specific letter of the key is equal to keyA
+			if(val == keyA)		//if the message letter is equal to the letter in the key
+				enc = i1;		//record that spot in the key as enc
 		}
 
-		alph = alphabet[enc];
+		alph = alphabet[enc]; //at enc find the letter of the alphabet and set that equal to alph
 		
 		
-		val = alph;
-		message[i] = val;
+		val = alph;  //save the new decrypted letter as val
+		message[i] = val; //put that back in the array
 	}
-	printf("%s\n", message);
+	}
+	printf("%s\n", message); //print the new message
 }
